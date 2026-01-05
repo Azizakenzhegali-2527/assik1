@@ -33,3 +33,4 @@ public class Triangle
                 p3.getX() * (p1.getY() - p2.getY())) / 2;
     }
 }
+
