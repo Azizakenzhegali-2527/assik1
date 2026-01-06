@@ -32,5 +32,38 @@ public class Triangle
                 p2.getX() * (p3.getY() - p1.getY())+
                 p3.getX() * (p1.getY() - p2.getY())) / 2;
     }
+
+    public double cross(Point a, Point b, Point c)
+    {
+        return ( b.getX() - a.getX())* (c.getY()- a.getY())-
+                (b.getY()-a.getY())* (c.getX()- a.getX());
+
+    }
+
+    public boolean contains(Point p)
+    {
+        double c1 = cross(p1,p2,p3);
+        double c2 = cross(p2,p3,p);
+        double c3 = cross(p3, p1, p);
+        boolean hasNeg = (c1<0) || (c2 <0) || (c3 <0);
+        boolean hasPos = (c1>0) || (c2>0) || ( c3>0);
+        return! (hasNeg && hasPos);
+    }
+    public boolean contains(Triangle t)
+    {
+        return contains(t.p1) && contains(t.p2) && contains(t.p3);
+
+    }
+
+    public boolean overlaps(Triangle t)
+    {
+        if(contains(t.p1) || contains(t.p2) || contains(t.p3))
+        {
+            return true;
+        }
+        return false;
+
+    }
+
 }
 
